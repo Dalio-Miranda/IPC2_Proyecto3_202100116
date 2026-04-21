@@ -1,0 +1,16 @@
+﻿@page
+@model ITGSA.Frontend.Pages.ResetModel
+<div class="container mt-4">
+    <h2>🗑️ Resetear Datos</h2>
+    @if (!string.IsNullOrEmpty(Model.Mensaje))
+    {
+        <div class="alert alert-info">@Model.Mensaje</div>
+    }
+    <form method="post">
+        <button type="submit" class="btn btn-danger"
+                onclick="return confirm('¿Estás seguro?')">
+            Resetear todos los datos
+        </button>
+    </form>
+    <a href="/" class="btn btn-secondary mt-2">← Volver</a>
+</div>

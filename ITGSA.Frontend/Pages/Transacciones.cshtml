@@ -1,0 +1,61 @@
+﻿@page
+@model ITGSA.Frontend.Pages.TransaccionesModel
+@{
+    ViewData["Title"] = "Cargar Transacciones";
+}
+<div class="container mt-4">
+    <h2>💳 Cargar Archivo de Transacciones</h2>
+    <form method="post" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label class="form-label">Seleccionar transac.xml</label>
+            <input type="file" name="archivo" accept=".xml" class="form-control" required />
+        </div>
+        <button type="submit" class="btn btn-success">Cargar</button>
+        <a href="/" class="btn btn-secondary ms-2">← Volver</a>
+    </form>
+
+    @if (Model.Respuesta != null)
+    {
+        <div class="card mt-4">
+            <div class="card-header bg-success text-white">✅ Respuesta del servidor</div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5>Facturas</h5>
+                        <ul class="list-group">
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span>Nuevas</span>
+                                <span class="badge bg-success">@Model.Respuesta.FacturasNuevas</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span>Duplicadas</span>
+                                <span class="badge bg-warning">@Model.Respuesta.FacturasDuplicadas</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span>Con error</span>
+                                <span class="badge bg-danger">@Model.Respuesta.FacturasError</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <h5>Pagos</h5>
+                        <ul class="list-group">
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span>Nuevos</span>
+                                <span class="badge bg-success">@Model.Respuesta.PagosNuevos</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span>Duplicados</span>
+                                <span class="badge bg-warning">@Model.Respuesta.PagosDuplicados</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span>Con error</span>
+                                <span class="badge bg-danger">@Model.Respuesta.PagosError</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

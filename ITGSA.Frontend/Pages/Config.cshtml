@@ -1,0 +1,42 @@
+﻿@page
+@model ITGSA.Frontend.Pages.ConfigModel
+@{
+    ViewData["Title"] = "Cargar Configuración";
+}
+<div class="container mt-4">
+    <h2>📋 Cargar Archivo de Configuración</h2>
+    <form method="post" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label class="form-label">Seleccionar config.xml</label>
+            <input type="file" name="archivo" accept=".xml" class="form-control" required />
+        </div>
+        <button type="submit" class="btn btn-primary">Cargar</button>
+        <a href="/" class="btn btn-secondary ms-2">← Volver</a>
+    </form>
+
+    @if (Model.Respuesta != null)
+    {
+        <div class="card mt-4">
+            <div class="card-header bg-success text-white">✅ Respuesta del servidor</div>
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr><th>Entidad</th><th>Creados</th><th>Actualizados</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Clientes</td>
+                            <td>@Model.Respuesta.ClientesCreados</td>
+                            <td>@Model.Respuesta.ClientesActualizados</td>
+                        </tr>
+                        <tr>
+                            <td>Bancos</td>
+                            <td>@Model.Respuesta.BancosCreados</td>
+                            <td>@Model.Respuesta.BancosActualizados</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+</div>
