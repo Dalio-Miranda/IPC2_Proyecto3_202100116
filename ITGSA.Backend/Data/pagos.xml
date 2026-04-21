@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<pagos>
+  <pago>
+    <codigoBanco>1</codigoBanco>
+    <fecha>15/03/2026</fecha>
+    <NITcliente>12345-6</NITcliente>
+    <valor>500.00</valor>
+  </pago>
+  <pago>
+    <codigoBanco>2</codigoBanco>
+    <fecha>20/03/2026</fecha>
+    <NITcliente>78910-K</NITcliente>
+    <valor>150.00</valor>
+  </pago>
+  <pago>
+    <codigoBanco>3</codigoBanco>
+    <fecha>25/03/2026</fecha>
+    <NITcliente>11111-1</NITcliente>
+    <valor>1000.00</valor>
+  </pago>
+  <pago>
+    <codigoBanco>1</codigoBanco>
+    <fecha>15/03/2026</fecha>
+    <NITcliente>12345-6</NITcliente>
+    <valor>500.00</valor>
+  </pago>
+  <pago>
+    <codigoBanco>2</codigoBanco>
+    <fecha>20/03/2026</fecha>
+    <NITcliente>78910-K</NITcliente>
+    <valor>150.00</valor>
+  </pago>
+  <pago>
+    <codigoBanco>3</codigoBanco>
+    <fecha>25/03/2026</fecha>
+    <NITcliente>11111-1</NITcliente>
+    <valor>1000.00</valor>
+  </pago>
+</pagos>

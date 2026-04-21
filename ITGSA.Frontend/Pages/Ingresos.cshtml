@@ -1,0 +1,69 @@
+﻿@page
+@model ITGSA.Frontend.Pages.IngresosModel
+@{
+    ViewData["Title"] = "Consultar Ingresos";
+}
+<div class="container mt-4">
+    <h2> Consultar Ingresos por Banco</h2>
+    <form method="get" class="row g-2 mb-4">
+        <div class="col-md-2">
+            <select name="mes" class="form-select">
+                @for (int i = 1; i <= 12; i++)
+                {
+                    if (i == Model.Mes)
+                    {
+                        <option value="@i" selected>@i</option>
+                    }
+                    else
+                    {
+                        <option value="@i">@i</option>
+                    }
+                }
+            </select>
+        </div>
+        <div class="col-md-2">
+            <input type="number" name="anio" value="@Model.Anio" class="form-control" />
+        </div>
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-success w-100">Ver gráfica</button>
+        </div>
+    </form>
+
+    @if (Model.DatosJson != "{}")
+    {
+        <canvas id="myChart" height="100"></canvas>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script>
+            const datos = @Html.Raw(Model.DatosJson);
+            const ctx = document.getElementById('myChart');
+            new Chart(ctx, {
+            type: 'bar',
+            data: {
+            labels: datos.bancos,
+            datasets: datos.meses.map((m, i) => ({
+            label: m,
+            data: datos.valores[i],
+            backgroundColor: ['#0d6efd', '#fd7e14', '#6c757d'][i]
+            }))
+            },
+            options: {
+            plugins: {
+            title: {
+            display: true,
+            text: 'Ingresos por banco - ' + datos.titulo
+            }
+            },
+            scales: {
+            y: {
+            title: {
+            display: true,
+            text: 'Miles de Quetzales'
+            }
+            }
+            }
+            }
+            });
+        </script>
+    }
+    <a href="/Peticiones" class="btn btn-secondary mt-3">← Volver</a>
+</div>

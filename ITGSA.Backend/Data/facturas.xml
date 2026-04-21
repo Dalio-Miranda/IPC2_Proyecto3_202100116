@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<facturas>
+  <factura>
+    <numeroFactura>FAC-001</numeroFactura>
+    <NITcliente>12345-6</NITcliente>
+    <fecha>01/03/2026</fecha>
+    <valor>500.00</valor>
+    <saldoPendiente>0</saldoPendiente>
+  </factura>
+  <factura>
+    <numeroFactura>FAC-002</numeroFactura>
+    <NITcliente>78910-K</NITcliente>
+    <fecha>05/03/2026</fecha>
+    <valor>300.00</valor>
+    <saldoPendiente>0</saldoPendiente>
+  </factura>
+  <factura>
+    <numeroFactura>FAC-003</numeroFactura>
+    <NITcliente>11111-1</NITcliente>
+    <fecha>10/03/2026</fecha>
+    <valor>750.00</valor>
+    <saldoPendiente>0</saldoPendiente>
+  </factura>
+</facturas>

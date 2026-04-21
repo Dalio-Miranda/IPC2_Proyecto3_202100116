@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<clientes>
+  <cliente>
+    <NIT>12345-6</NIT>
+    <nombre>Almacén Guatemalteco</nombre>
+  </cliente>
+  <cliente>
+    <NIT>78910-K</NIT>
+    <nombre>Tienda Central</nombre>
+  </cliente>
+  <cliente>
+    <NIT>11111-1</NIT>
+    <nombre>Comercial del Sur</nombre>
+  </cliente>
+</clientes>

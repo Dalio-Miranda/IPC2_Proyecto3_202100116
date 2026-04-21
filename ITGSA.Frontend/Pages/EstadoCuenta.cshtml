@@ -1,0 +1,59 @@
+﻿@page
+@model ITGSA.Frontend.Pages.EstadoCuentaModel
+@{
+    ViewData["Title"] = "Estado de Cuenta";
+}
+<div class="container mt-4">
+    <h2>📊 Estado de Cuenta</h2>
+    <form method="get" class="row g-2 mb-4">
+        <div class="col-md-4">
+            <input type="text" name="nit" value="@Model.NitBuscado"
+                   class="form-control" placeholder="NIT del cliente (vacío = todos)" />
+        </div>
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-primary w-100">Buscar</button>
+        </div>
+    </form>
+
+    @foreach (var c in Model.Clientes)
+    {
+        <div class="card mb-3">
+            <div class="card-header">
+                <strong>Cliente: @c.NIT – @c.Nombre</strong>
+                <span class="float-end">Saldo actual: Q. @c.SaldoActual</span>
+            </div>
+            <div class="card-body">
+                <table class="table table-sm table-bordered">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Cargo</th>
+                            <th>Abono</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var t in c.Transacciones)
+                        {
+                            <tr>
+                                <td>@t.Fecha</td>
+                                <td>
+                                    @if (t.Tipo == "cargo")
+                                    {
+                                        <span class="text-danger">Q. @t.Monto (Fact. # @t.Descripcion)</span>
+                                    }
+                                </td>
+                                <td>
+                                    @if (t.Tipo == "abono")
+                                    {
+                                        <span class="text-success">Q. @t.Monto (@t.Descripcion)</span>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+    <a href="/Peticiones" class="btn btn-secondary">← Volver</a>
+</div>

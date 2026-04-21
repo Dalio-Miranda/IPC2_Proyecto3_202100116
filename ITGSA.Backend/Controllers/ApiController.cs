@@ -14,8 +14,12 @@ namespace ITGSA.Backend.Controllers
         [HttpPost("grabarConfiguracion")]
         public async Task<IActionResult> GrabarConfiguracion()
         {
-            using var reader = new StreamReader(Request.Body);
+            using var reader = new StreamReader(Request.Body, System.Text.Encoding.UTF8);
             string xml = await reader.ReadToEndAsync();
+
+            if (string.IsNullOrEmpty(xml))
+                return BadRequest("<error>XML vacio</error>");
+
             var respuesta = _ds.ProcesarConfig(xml);
             return Content(respuesta.ToString(), "application/xml");
         }
@@ -24,8 +28,12 @@ namespace ITGSA.Backend.Controllers
         [HttpPost("grabarTransaccion")]
         public async Task<IActionResult> GrabarTransaccion()
         {
-            using var reader = new StreamReader(Request.Body);
+            using var reader = new StreamReader(Request.Body, System.Text.Encoding.UTF8);
             string xml = await reader.ReadToEndAsync();
+
+            if (string.IsNullOrEmpty(xml))
+                return BadRequest("<error>XML vacio</error>");
+
             var respuesta = _ds.ProcesarTransacciones(xml);
             return Content(respuesta.ToString(), "application/xml");
         }

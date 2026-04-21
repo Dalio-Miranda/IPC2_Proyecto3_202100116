@@ -1,0 +1,26 @@
+﻿@page
+@model ITGSA.Frontend.Pages.PeticionesModel
+@{
+    ViewData["Title"] = "Peticiones";
+}
+<div class="container mt-4">
+    <h2> Peticiones</h2>
+    <div class="row g-3 mb-4">
+        <div class="col-md-4">
+            <a href="/EstadoCuenta" class="btn btn-outline-primary btn-lg w-100">
+                 Estado de Cuenta
+            </a>
+        </div>
+        <div class="col-md-4">
+            <a href="/Ingresos" class="btn btn-outline-success btn-lg w-100">
+                 Consultar Ingresos
+            </a>
+        </div>
+        <div class="col-md-4">
+            <a href="/Ayuda" class="btn btn-outline-secondary btn-lg w-100">
+                 Ayuda
+            </a>
+        </div>
+    </div>
+    <a href="/" class="btn btn-secondary">← Volver</a>
+</div>

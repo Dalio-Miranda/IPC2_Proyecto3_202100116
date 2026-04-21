@@ -4,7 +4,7 @@
     ViewData["Title"] = "Cargar Configuración";
 }
 <div class="container mt-4">
-    <h2>📋 Cargar Archivo de Configuración</h2>
+    <h2> Cargar Archivo de Configuración</h2>
     <form method="post" enctype="multipart/form-data">
         <div class="mb-3">
             <label class="form-label">Seleccionar config.xml</label>
@@ -13,6 +13,14 @@
         <button type="submit" class="btn btn-primary">Cargar</button>
         <a href="/" class="btn btn-secondary ms-2">← Volver</a>
     </form>
+
+    @if (!string.IsNullOrEmpty(Model.RespuestaRaw))
+    {
+        <div class="alert alert-warning mt-3">
+            <strong>Respuesta raw del Backend:</strong>
+            <pre>@Model.RespuestaRaw</pre>
+        </div>
+    }
 
     @if (Model.Respuesta != null)
     {

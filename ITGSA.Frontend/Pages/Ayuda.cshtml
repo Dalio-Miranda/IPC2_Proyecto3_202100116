@@ -1,0 +1,47 @@
+﻿@page
+@model ITGSA.Frontend.Pages.AyudaModel
+@{
+    ViewData["Title"] = "Ayuda";
+}
+<div class="container mt-4">
+    <h2> Ayuda</h2>
+    <div class="row g-3">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                     Información del Estudiante
+                </div>
+                <div class="card-body">
+                    <p><strong>Nombre:</strong> [Tu nombre aquí]</p>
+                    <p><strong>Carnet:</strong> 202100116</p>
+                    <p><strong>Curso:</strong> IPC2 - 1S 2026</p>
+                    <p><strong>Facultad:</strong> Ingeniería, USAC</p>
+                    <p><strong>GitHub:</strong> Dalio-Miranda</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-success text-white">
+                     Documentación del Sistema
+                </div>
+                <div class="card-body">
+                    <h6>Endpoints del API:</h6>
+                    <ul>
+                        <li><code>POST /api/grabarConfiguracion</code> – Carga config.xml</li>
+                        <li><code>POST /api/grabarTransaccion</code> – Carga transac.xml</li>
+                        <li><code>POST /api/limpiarDatos</code> – Resetea el sistema</li>
+                        <li><code>GET /api/devolverEstadoCuenta</code> – Estado de cuenta</li>
+                        <li><code>GET /api/devolverResumenPagos</code> – Ingresos por banco</li>
+                    </ul>
+                    <h6>Archivos de entrada:</h6>
+                    <ul>
+                        <li><code>config.xml</code> – Clientes y bancos</li>
+                        <li><code>transac.xml</code> – Facturas y pagos</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="/Peticiones" class="btn btn-secondary mt-3">← Volver</a>
+</div>
