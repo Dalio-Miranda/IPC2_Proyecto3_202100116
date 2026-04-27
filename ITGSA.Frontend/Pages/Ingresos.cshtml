@@ -27,6 +27,12 @@
         <div class="col-md-2">
             <button type="submit" class="btn btn-success w-100">Ver gráfica</button>
         </div>
+        <div class="col-md-2">
+            <a href="/Ingresos?handler=Pdf&mes=@Model.Mes&anio=@Model.Anio"
+                   class="btn btn-danger w-100">
+                 Exportar PDF
+            </a>
+        </div>
     </form>
 
     @if (Model.DatosJson != "{}")

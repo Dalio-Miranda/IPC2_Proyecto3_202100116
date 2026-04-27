@@ -1,5 +1,7 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Xml.Linq;
+using ITGSA.Frontend.Services;
 
 namespace ITGSA.Frontend.Pages
 {
@@ -22,12 +24,18 @@ namespace ITGSA.Frontend.Pages
     public class EstadoCuentaModel : PageModel
     {
         private readonly IHttpClientFactory _factory;
-        public EstadoCuentaModel(IHttpClientFactory f) => _factory = f;
+        private readonly PdfService _pdf;
+
+        public EstadoCuentaModel(IHttpClientFactory f, PdfService pdf)
+        {
+            _factory = f;
+            _pdf = pdf;
+        }
 
         public List<ClienteVM> Clientes { get; set; } = new();
         public string NitBuscado { get; set; } = "";
 
-        public async Task OnGetAsync(string? nit)
+        private async Task CargarDatos(string? nit)
         {
             NitBuscado = nit ?? "";
             var client = _factory.CreateClient("Backend");
@@ -56,6 +64,41 @@ namespace ITGSA.Frontend.Pages
                     });
                 Clientes.Add(vm);
             }
+        }
+
+        public async Task OnGetAsync(string? nit)
+        {
+            await CargarDatos(nit);
+        }
+
+        public async Task<IActionResult> OnGetPdfAsync(string? nit)
+        {
+            await CargarDatos(nit);
+
+            var todasTransacciones = new List<(string, string, string)>();
+            string nitCliente = "";
+            string nombreCliente = "";
+            string saldoCliente = "";
+
+            foreach (var c in Clientes)
+            {
+                nitCliente = c.NIT;
+                nombreCliente = c.Nombre;
+                saldoCliente = c.SaldoActual;
+
+                foreach (var t in c.Transacciones)
+                {
+                    string cargo = t.Tipo == "cargo"
+                        ? $"Q. {t.Monto} (Fact. #{t.Descripcion})" : "";
+                    string abono = t.Tipo == "abono"
+                        ? $"Q. {t.Monto} ({t.Descripcion})" : "";
+                    todasTransacciones.Add((t.Fecha, cargo, abono));
+                }
+            }
+
+            var bytes = _pdf.GenerarEstadoCuenta(
+                nitCliente, nombreCliente, saldoCliente, todasTransacciones);
+            return File(bytes, "application/pdf", "EstadoCuenta.pdf");
         }
     }
 }

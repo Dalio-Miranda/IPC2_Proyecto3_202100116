@@ -1,9 +1,12 @@
+using ITGSA.Frontend.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddHttpClient("Backend", c =>
 {
     c.BaseAddress = new Uri("http://localhost:5265/api/");
 });
+builder.Services.AddSingleton<PdfService>();
 
 var app = builder.Build();
 app.UseStaticFiles();
